@@ -2,7 +2,7 @@
 // @name        InitiumPlus
 // @namespace   michaelripley.net
 // @description Show Initium Path IDs
-// @version     0.3.1
+// @version     0.3.2
 // @include     /^https?://(www\.)?playinitium\.com/main\.jsp(\?.*)?#?$/
 // @require     names.js
 // @require     gm_config.js
@@ -69,7 +69,7 @@ function getDisplayedId(realId) {
 function setLabel(label, id) {
 	var labelText = getDisplayedId(id);
 	if (labelText) {
-		label.innerHTML = "[" + getDisplayedId(id) + "]";
+		label.innerHTML = "id:" + getDisplayedId(id);
 	} else {
 		label.innerHTML = "";
 	}
