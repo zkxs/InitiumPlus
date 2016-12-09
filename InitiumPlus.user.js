@@ -2,7 +2,7 @@
 // @name        InitiumPlus
 // @namespace   michaelripley.net
 // @description Show Initium Path IDs
-// @version     0.3.2
+// @version     0.4.0
 // @include     /^https?://(www\.)?playinitium\.com/main\.jsp(\?.*)?#?$/
 // @require     names.js
 // @require     gm_config.js
@@ -119,6 +119,7 @@ addStyle(); // inject extra css
 GM_config.init(
 {
   'id': 'iPlusConfig', // The id used for this instance of GM_config
+  'title': 'Initium+ Configuration',
   'fields': // Fields object
   {
     'idDisplayMode': // This is the id of the field
@@ -133,7 +134,7 @@ GM_config.init(
   {
     'save': updateLabels
   },
-  'css': '#iPlusConfig {color: #FFFFFF; background-color: #1E1B16;} #iPlusConfig .reset, #iPlusConfig .reset a, #iPlusConfig_buttons_holder {color: #FFFFFF;}'
+  'css': '@font-face {font-family: "DOS"; src: url("https://www.playinitium.com/odp/DOS.ttf");} #iPlusConfig {color: #FFFFFF; background-color: #1E1B16;} #iPlusConfig .reset, #iPlusConfig .reset a, #iPlusConfig_buttons_holder {color: #FFFFFF;} #iPlusConfig * {font-family: DOS, Monospace;}'
 });
 
 labelButtons();
