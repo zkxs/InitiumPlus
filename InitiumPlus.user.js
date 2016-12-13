@@ -3,7 +3,7 @@
 // @namespace   michaelripley.net
 // @description Show Initium Path IDs
 // @version     0.4.0
-// @include     /^https?://(www\.)?playinitium\.com/main\.jsp(\?.*)?#?$/
+// @include     /^https?://(www\.)?playinitium\.com/(main|combat)\.jsp(\?.*)?#?$/
 // @require     names.js
 // @require     gm_config.js
 // @grant       GM_getValue
