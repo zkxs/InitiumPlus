@@ -2,7 +2,7 @@
 // @name        InitiumPlus
 // @namespace   michaelripley.net
 // @description Show Initium Path IDs
-// @version     0.4.0
+// @version     0.4.1
 // @include     /^https?://(www\.)?playinitium\.com/(main|combat)\.jsp(\?.*)?#?$/
 // @require     names.js
 // @require     gm_config.js
