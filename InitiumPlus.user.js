@@ -111,6 +111,40 @@ function updateLabels() {
 	}
 }
 
+function getLocationName() {
+	return document.getElementById("locationName").textContent;
+}
+
+function setLocationTooltip(tooltip) {
+	document.getElementById("locationName").setAttribute("title", tooltip);
+}
+
+function addToolbarButton() {
+	var toolbars = document.evaluate(toolbarXpath, document.body, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+	if (toolbars.snapshotLength > 0) {
+		var toolbar = toolbars.snapshotItem(0);
+		var icon = document.createElement("a");
+		icon.id = "iPlusToolbarIcon";
+		icon.classList.add("header-stats-caption");
+		icon.innerHTML = "i+";
+		// set up event listener to open config
+		icon.addEventListener('click', function() {
+			GM_config.open();
+			document.getElementById("iPlusConfig").style.zIndex = 999999999999999999; // the stupid chat window has a z-index of 1000100 for some reason
+		}, true);
+		toolbar.insertBefore(icon, toolbar.firstChild);
+	} else {
+		log("Error: toolbars.snapshotLength == " + toolbars.snapshotLength);
+	}
+}
+
+function trackLocation() {
+	var locationName = getLocationName();
+	var lastLocationName = GM_getValue("lastLocationName");
+	GM_setValue("lastLocationName", locationName);
+	setLocationTooltip("Last location: " + lastLocationName);
+}
+
 // BEGIN SCRIPT
 
 addStyle(); // inject extra css
@@ -137,23 +171,10 @@ GM_config.init(
   'css': '@font-face {font-family: "DOS"; src: url("https://www.playinitium.com/odp/DOS.ttf");} #iPlusConfig {color: #FFFFFF; background-color: #1E1B16;} #iPlusConfig .reset, #iPlusConfig .reset a, #iPlusConfig_buttons_holder {color: #FFFFFF;} #iPlusConfig * {font-family: DOS, Monospace;}'
 });
 
+addToolbarButton();
+
 labelButtons();
 
-// set up event listener to open config
-var toolbars = document.evaluate(toolbarXpath, document.body, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-if (toolbars.snapshotLength > 0) {
-	var toolbar = toolbars.snapshotItem(0);
-	var icon = document.createElement("a");
-	icon.id = "iPlusToolbarIcon";
-	icon.classList.add("header-stats-caption");
-	icon.innerHTML = "i+";
-	icon.addEventListener('click', function() {
-		GM_config.open();
-		document.getElementById("iPlusConfig").style.zIndex = 999999999999999999; // the stupid chat window has a z-index of 1000100 for some reason
-	}, true);
-	toolbar.insertBefore(icon, toolbar.firstChild);
-} else {
-	log("Error: toolbars.snapshotLength == " + toolbars.snapshotLength);
-}
+trackLocation();
 
 log("Done.");
