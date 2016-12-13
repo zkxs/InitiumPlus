@@ -152,8 +152,6 @@ if (toolbars.snapshotLength > 0) {
 		document.getElementById("iPlusConfig").style.zIndex = 999999999999999999; // the stupid chat window has a z-index of 1000100 for some reason
 	}, true);
 	toolbar.insertBefore(icon, toolbar.firstChild);
-	console.log(toolbar);
-	console.log(icon);
 } else {
 	log("Error: toolbars.snapshotLength == " + toolbars.snapshotLength);
 }
